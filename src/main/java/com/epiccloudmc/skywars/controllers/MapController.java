@@ -18,25 +18,33 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.epiccloudmc.skywars;
+package com.epiccloudmc.skywars.controllers;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import java.io.File;
 
-public class Skywars extends JavaPlugin {
+import com.epiccloudmc.skywars.objects.interfaces.IController;
+import com.epiccloudmc.skywars.utils.Files;
+import com.epiccloudmc.skywars.utils.Logs;
+import com.epiccloudmc.skywars.utils.Files.FileType;
 
-  @Override
-  public void onEnable() {
-    Skywars.skywars = this;
+public class MapController extends IController {
+
+  private File folder;
+
+  public MapController() {
+    folder = Files.create(new File(folder, "maps"), FileType.DIRECTORY);
+    for (File map : folder.listFiles()) {
+      if (Files.matches(map, FileType.DIRECTORY)) {
+
+      }
+    }
   }
 
-  @Override
-  public void onDisable() {
-
-  }
-
-  private static Skywars skywars;
-
-  public static Skywars getSkywars() {
-    return skywars;
+  public void load(File map) {
+    if (Files.exists(map.getParent(), map.getName())) {
+      Logs.warn("A map already exists with the name: " + map.getName());
+      return;
+    }
+    File world = Files.copy(map, Files.ROOT.getAbsolutePath(), "uid.dat", "session.dat");
   }
 }

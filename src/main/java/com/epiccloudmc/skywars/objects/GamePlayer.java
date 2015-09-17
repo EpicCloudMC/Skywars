@@ -18,25 +18,15 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.epiccloudmc.skywars;
+package com.epiccloudmc.skywars.objects;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import java.util.UUID;
 
-public class Skywars extends JavaPlugin {
+public class GamePlayer {
 
-  @Override
-  public void onEnable() {
-    Skywars.skywars = this;
-  }
+  private UUID uuid;
 
-  @Override
-  public void onDisable() {
-
-  }
-
-  private static Skywars skywars;
-
-  public static Skywars getSkywars() {
-    return skywars;
+  public UUID getUUID() {
+    return uuid;
   }
 }

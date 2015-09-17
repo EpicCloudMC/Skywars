@@ -18,25 +18,23 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.epiccloudmc.skywars;
+package com.epiccloudmc.skywars.utils;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import com.epiccloudmc.skywars.Skywars;
 
-public class Skywars extends JavaPlugin {
+public class Logs {
 
-  @Override
-  public void onEnable() {
-    Skywars.skywars = this;
+  private static Skywars skywars = Skywars.getSkywars();
+
+  public static void info(String message) {
+    skywars.getLogger().info(message);
   }
 
-  @Override
-  public void onDisable() {
-
+  public static void warn(String message) {
+    skywars.getLogger().warning(message);
   }
 
-  private static Skywars skywars;
-
-  public static Skywars getSkywars() {
-    return skywars;
+  public static void severe(String message) {
+    skywars.getLogger().severe(message);
   }
 }
