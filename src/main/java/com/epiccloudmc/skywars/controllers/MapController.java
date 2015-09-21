@@ -35,7 +35,7 @@ public class MapController extends IController {
     folder = Files.create(new File(folder, "maps"), FileType.DIRECTORY);
     for (File map : folder.listFiles()) {
       if (Files.matches(map, FileType.DIRECTORY)) {
-
+        load(map);
       }
     }
   }
